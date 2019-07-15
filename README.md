@@ -2,12 +2,12 @@
 
 ####  修改ucf-common 
 
-1.ucf-common/src/components/RowField/NumberField.js
+1.ucf-common/src/components/RowField/NumberField.js 其他类型TextField、DateField等类似 
 #####  修改前
 ```js
 let {value,error, flag ,required,message} = this.state;
 let { className, iconStyle, max, min, step, precision } = this.props;
-
+```
 #####  修改后  将 `value` 值从 this.props 中解构
 ```js
 let {error, flag ,required,message} = this.state;
@@ -58,8 +58,7 @@ changeAllData = (field, value, index,refname) => {
               // 根据义务场景 自定义修改项
               _sourseData[index]['code'] = 'xxxxxxxxx';
           }
-	      //----------------------------------------------
-
+	//----------------------------------------------
 
         oldData[index]['_checked'] = true;
         this.oldData = oldData;
