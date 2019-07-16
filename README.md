@@ -14,7 +14,7 @@ let {error, flag ,required,message} = this.state;
 let { className, iconStyle, max, min, step, precision,value } = this.props;
 ```
 
-2. 修改 FactoryComp 中的changeAllData() 方法, 根据需求添加义务代码
+2. 单表行修改 FactoryComp 中的changeAllData() 方法, 根据需求添加义务代码
 ##### 修改前
 ```js
 changeAllData = (field, value, index,refname) => {
@@ -64,6 +64,34 @@ changeAllData = (field, value, index,refname) => {
         this.oldData = oldData;
 }
 ```
+3. 一主一子 
+##### 修改 changeAllData
+
+```js
+
+changeAllData = (field, value, index,refname) => {
+	 console.log(field + " --- ",value);
+        this.oldData[index][field] = value;
+}
+
+```
+
+##### 修后 changeAllData
+```js
+
+changeAllData = (field, value, index,refname) => {
+	this.oldData[index][field] = value;
+	this.oldData[index]['detailModel'] = 'detailModel';  // 联动其他值
+
+	const {queryDetailObj}=this.props; //  解构表数据
+	queryDetailObj.list=this.oldData;
+
+        actions.masterDetailOrder.updateState({ queryDetailObj });
+}
+
+```
+
+
 
 
 
