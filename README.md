@@ -81,10 +81,12 @@ changeAllData = (field, value, index,refname) => {
 
 changeAllData = (field, value, index,refname) => {
 	this.oldData[index][field] = value;
-	this.oldData[index]['detailModel'] = 'detailModel';  // 联动其他值
-
-	const {queryDetailObj}=this.props; //  解构表数据
-	queryDetailObj.list=this.oldData;
+        if(field==='detailName'){
+            this.oldData[index]['detailModel'] = '我是带出来的';  // 联动其他值
+        }
+        
+        const {queryDetailObj}=this.props; //  解构表数据
+        queryDetailObj.list=this.oldData;
 
         actions.masterDetailOrder.updateState({ queryDetailObj });
 }
