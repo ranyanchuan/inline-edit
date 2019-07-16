@@ -89,6 +89,9 @@ changeAllData = (field, value, index,refname) => {
         queryDetailObj.list=this.oldData;
 
         actions.masterDetailOrder.updateState({ queryDetailObj });
+	// 强制刷新
+	const {isRender}=this.state;
+        this.setState({isRender:!isRender});
 }
 
 ```
